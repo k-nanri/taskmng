@@ -1,9 +1,91 @@
 package jp.task.mng.app.controller;
 
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jp.task.mng.app.model.TaskInformation;
+import jp.task.mng.app.model.TodoId;
+import jp.task.mng.app.service.TaskDeleteService;
+import jp.task.mng.app.service.TaskRegistrationService;
+import jp.task.mng.app.service.TaskSearchService;
+import jp.task.mng.app.service.TaskUpateService;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
+@RequestMapping("/todo")
 public class TaskController {
-
-
+    
+    private final TaskUpateService updateService;
+    
+    private final TaskRegistrationService registService;
+    
+    private final TaskDeleteService deleteService;
+    
+    private final TaskSearchService searchService;
+    
+    @Autowired
+    public TaskController(TaskSearchService searchService,
+                           TaskRegistrationService registService,
+                            TaskDeleteService deleteService,
+                            TaskUpateService updateService) {
+        
+        this.updateService = updateService;
+        this.searchService = searchService;
+        this.deleteService = deleteService;
+        this.registService = registService;
+    }
+    
+    
+    private static final Logger log = LoggerFactory.getLogger(TaskController.class);
+    
+    @GetMapping
+    public ResponseEntity<List<TaskInformation>> getTask(
+            @RequestParam(value = "todo_id", required = false) Integer todoId,
+            @RequestParam(value = "offset", required = false) Integer offset,
+            @RequestParam(value = "limit", required = false) Integer limit) {
+        
+        log.info("hoge");
+        
+        List<TaskInformation> taskInformationList = null;
+        return ResponseEntity.ok(taskInformationList);
+        
+    }
+    
+    @PostMapping
+    public ResponseEntity<TodoId> createTask(@RequestBody TaskInformation taskInformation) {
+        
+        TodoId todoId = null;
+        return ResponseEntity.ok(todoId);
+        
+    }
+    
+    @PatchMapping("/{todo_id}")
+    public ResponseEntity<Void> updateTask(
+            @PathVariable("todo_id") Integer todoId,
+            @RequestBody TaskInformation taskInformation) {
+        
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        
+    }
+    
+    @DeleteMapping("{todo_id}")
+    public ResponseEntity<Void> deleteTask(@PathVariable("todo_id") Integer todoId) {
+        
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 }
