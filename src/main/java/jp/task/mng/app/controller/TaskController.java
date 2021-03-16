@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import jp.task.mng.app.model.TaskInformation;
+import jp.task.mng.app.model.TaskSearchInformation;
 import jp.task.mng.app.model.TodoId;
 import jp.task.mng.app.service.TaskDeleteService;
 import jp.task.mng.app.service.TaskRegistrationService;
@@ -59,18 +60,17 @@ public class TaskController {
             @RequestParam(value = "offset", required = false) Integer offset,
             @RequestParam(value = "limit", required = false) Integer limit) {
         
-        log.info("hoge");
+        TaskSearchInformation taskSearchInfo = new TaskSearchInformation(todoId, offset, limit);
         
-        List<TaskInformation> taskInformationList = null;
-        return ResponseEntity.ok(taskInformationList);
+        return this.searchService.fetch(taskSearchInfo);
         
     }
     
     @PostMapping
     public ResponseEntity<TodoId> createTask(@RequestBody TaskInformation taskInformation) {
         
-        TodoId todoId = null;
-        return ResponseEntity.ok(todoId);
+        return this.registService.createTask(taskInformation);
+
         
     }
     
@@ -79,13 +79,14 @@ public class TaskController {
             @PathVariable("todo_id") Integer todoId,
             @RequestBody TaskInformation taskInformation) {
         
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return this.updateService.update(todoId, taskInformation);
         
     }
     
     @DeleteMapping("{todo_id}")
     public ResponseEntity<Void> deleteTask(@PathVariable("todo_id") Integer todoId) {
         
-        return ResponseEntity.status(HttpStatus.OK).build();
+        TodoId tagetId = new TodoId(todoId);
+        return this.deleteService.removeTask(tagetId);
     }
 }
