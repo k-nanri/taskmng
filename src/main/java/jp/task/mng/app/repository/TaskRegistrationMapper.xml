@@ -1,0 +1,13 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="jp.task.mng.app.repository.TaskRegistrationRepository">
+    <insert id="createTask" parameterType="jp.task.mng.app.dto.TaskRegistrationDto">
+        INSERT INO 
+            task
+            (title, detail, progress, starttime, endtime)
+        VALUES
+            (#{title}, #{detail}, #{progress}, #{startData}, #{endData})
+    </insert>
+  </mapper>
