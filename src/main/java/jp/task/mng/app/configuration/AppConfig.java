@@ -3,6 +3,7 @@ package jp.task.mng.app.configuration;
 import javax.sql.DataSource;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @ComponentScan("jp.task.mng.app")
 @EnableTransactionManagement
-
+@MapperScan("jp.task.mng.app.repository")
 public class AppConfig {
 
     @Bean

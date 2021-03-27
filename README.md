@@ -29,3 +29,11 @@ CREATE TABLE TASK (
   endtime timestamp 
 );
 
+## REST
+{
+"title" : "hoge",
+"detail": "de",
+"progress": 0,
+"start_date": "2021-03-01T00:00:00+00:00",
+"end_date" : "2021-03-02T00:00:00+00:00"
+}
