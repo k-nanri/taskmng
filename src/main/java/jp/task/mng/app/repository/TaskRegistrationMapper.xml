@@ -4,7 +4,7 @@
 
   <mapper namespace="jp.task.mng.app.repository.TaskRegistrationMapper">
     <insert id="createTask" parameterType="TaskRegistrationDto">
-        INSERT INO 
+        INSERT INTO
             task
             (title, detail, progress, starttime, endtime)
         VALUES
