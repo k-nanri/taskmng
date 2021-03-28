@@ -1,6 +1,6 @@
 package jp.task.mng.app.dto;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,9 +15,9 @@ public class TaskRegistrationDto {
     
     private int progress;
     
-    private ZonedDateTime startDate;
+    private LocalDateTime startDate;
     
-    private ZonedDateTime endDate;
+    private LocalDateTime endDate;
     
 
 }

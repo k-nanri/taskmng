@@ -34,6 +34,16 @@ CREATE TABLE TASK (
 "title" : "hoge",
 "detail": "de",
 "progress": 0,
-"start_date": "2021-03-01T00:00:00+00:00",
-"end_date" : "2021-03-02T00:00:00+00:00"
+"start_date": "2021-03-01T00:00:00",
+"end_date" : "2021-03-02T00:00:00"
 }
+
+## ZonedDateTimeクラスを使用するとエラーになる。
+
+MyBatisでZonedDateTimeクラスを使用すると以下のエラーが発生する。
+「org.postgresql.util.PSQLException: java.time.ZonedDateTime のインスタンスに対して使うべきSQL型を推測できません。明示的な Types 引数をとる setObject() で使うべき型を指定してください。」
+
+https://jdbc.postgresql.org/documentation/head/8-date-time.html
+
+PostgreSQLはサポートしてないようなので、Javaで変換が必要。
+

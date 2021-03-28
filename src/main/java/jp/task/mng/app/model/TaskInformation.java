@@ -1,6 +1,7 @@
 package jp.task.mng.app.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,12 +28,13 @@ public class TaskInformation implements Serializable {
     private int progress;
     
     @JsonProperty("start_date")
-    private ZonedDateTime startDate;
+    private LocalDateTime startDate;
     
     @JsonProperty("end_date")
-    private ZonedDateTime endDate;
+    private LocalDateTime endDate;
 
     public TaskRegistrationDto createTaakDto() {
+
         return new TaskRegistrationDto(
                 this.title, this.detail, this.progress, this.endDate, this.endDate);
     }
