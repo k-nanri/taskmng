@@ -3,7 +3,9 @@ package jp.task.mng.app.dto;
 import java.time.ZonedDateTime;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
 @AllArgsConstructor
 public class TaskRegistrationDto {
     
@@ -16,5 +18,6 @@ public class TaskRegistrationDto {
     private ZonedDateTime startDate;
     
     private ZonedDateTime endDate;
+    
 
 }

@@ -8,16 +8,16 @@ import org.springframework.transaction.annotation.Transactional;
 import jp.task.mng.app.dto.TaskRegistrationDto;
 import jp.task.mng.app.model.TaskInformation;
 import jp.task.mng.app.model.TodoId;
-import jp.task.mng.app.repository.TaskRegistrationRepository;
+import jp.task.mng.app.repository.TaskRegistrationMapper;
 
 @Transactional
 @Service
 public class TaskRegistrationServiceImpl implements TaskRegistrationService {
 
-    private final TaskRegistrationRepository repository;
+    private final TaskRegistrationMapper repository;
     
     @Autowired
-    public TaskRegistrationServiceImpl(TaskRegistrationRepository repository) {
+    public TaskRegistrationServiceImpl(TaskRegistrationMapper repository) {
         this.repository = repository;
     }
     
