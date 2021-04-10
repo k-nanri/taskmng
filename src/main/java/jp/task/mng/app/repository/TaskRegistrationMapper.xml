@@ -3,11 +3,12 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
   <mapper namespace="jp.task.mng.app.repository.TaskRegistrationMapper">
-    <insert id="createTask" parameterType="TaskRegistrationDto">
+    <select id="createTask" parameterType="TaskRegistrationDto" resultType="integer">
         INSERT INTO
             task
             (title, detail, progress, starttime, endtime)
         VALUES
             (#{title}, #{detail}, #{progress}, #{startDate}, #{endDate})
-    </insert>
+        RETURNING id
+    </select>
   </mapper>

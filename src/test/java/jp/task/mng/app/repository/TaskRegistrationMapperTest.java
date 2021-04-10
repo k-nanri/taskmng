@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 import jp.task.mng.app.dto.TaskRegistrationDto;
-import jp.task.mng.app.repository.TaskRegistrationMapper;
 
 // @SpringBootTest だけだと
 // The dependencies of some of the beans in the application context form a cycle
