@@ -10,6 +10,7 @@ public class TaskSearchInformation {
     
     public TaskSearchInformation(Integer todoId, Integer offset, Integer limit) {
         
+        /*
         if (isEmptyOrlessThanZero(todoId)) {
             throw new IllegalArgumentException();
         }
@@ -19,14 +20,12 @@ public class TaskSearchInformation {
         if (offset != null && offset < 0) {
             throw new IllegalArgumentException();
         }
+        */
+        this.todoId = 0;
         
-        this.offset = offset;
+        this.offset = offset;        
+        this.limit = limit;      
         
-        if (limit != null && limit < 0) {
-            throw new IllegalArgumentException();
-        }
-        
-        this.limit = limit;       
     }
     
     private boolean isEmptyOrlessThanZero(Integer number) {

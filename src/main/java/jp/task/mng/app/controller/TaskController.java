@@ -64,8 +64,8 @@ public class TaskController {
             @RequestParam(value = "limit", required = false) Integer limit) {
         
         TaskSearchInformation taskSearchInfo = new TaskSearchInformation(todoId, offset, limit);
-        
-        return this.searchService.fetch(taskSearchInfo);
+        List<TaskInformation> taskList = this.searchService.fetch(taskSearchInfo);
+        return ResponseEntity.ok(taskList);
         
     }
     

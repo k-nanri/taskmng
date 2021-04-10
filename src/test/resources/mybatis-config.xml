@@ -10,5 +10,6 @@
     </settings>
     <typeAliases>
         <package name="jp.task.mng.app.dto" />
+        <package name="jp.task.mng.app.model" />
     </typeAliases>
   </configuration>

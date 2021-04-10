@@ -17,6 +17,9 @@ public class TaskInformation implements Serializable {
      * 
      */
     private static final long serialVersionUID = 1L;
+    
+    @JsonProperty("taskId")
+    private int id;
 
     @JsonProperty("title")
     private String title;
@@ -28,15 +31,15 @@ public class TaskInformation implements Serializable {
     private int progress;
     
     @JsonProperty("start_date")
-    private LocalDateTime startDate;
+    private LocalDateTime starttime;
     
     @JsonProperty("end_date")
-    private LocalDateTime endDate;
+    private LocalDateTime endtime;
 
     public TaskRegistrationDto createTaakDto() {
 
         return new TaskRegistrationDto(
-                this.title, this.detail, this.progress, this.endDate, this.endDate);
+                this.title, this.detail, this.progress, this.starttime, this.endtime);
     }
 
 }
