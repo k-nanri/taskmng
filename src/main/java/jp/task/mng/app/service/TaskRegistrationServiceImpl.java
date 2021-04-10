@@ -22,12 +22,13 @@ public class TaskRegistrationServiceImpl implements TaskRegistrationService {
     }
     
     @Override
-    public ResponseEntity<TodoId> createTask(TaskInformation taskInformation) {
+    public TodoId createTask(TaskInformation taskInformation) {
         
         TaskRegistrationDto dto = taskInformation.createTaakDto();
-        this.repository.createTask(dto);
+        int id = this.repository.createTask(dto);
+        TodoId todoId = new TodoId(id);
         
-        return null;
+        return todoId;
     }
 
 }

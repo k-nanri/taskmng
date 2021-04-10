@@ -20,11 +20,12 @@ $ docker container exec -it pg-docker /bin/bash
 $ psql -U postgres
 # CREATE DATABASE taskmng ENCODING = 'UTF8';
 ```
-
+CREATE SEQUENCE task_id_seq;
 CREATE TABLE TASK (
+  id integer DEFAULT nextval('task_id_seq') PRIMARY KEY,
   title varchar(30),
   detail varchar(300),
-  progress int,
+  progress integer,
   starttime timestamp ,
   endtime timestamp 
 );
@@ -47,3 +48,8 @@ https://jdbc.postgresql.org/documentation/head/8-date-time.html
 
 PostgreSQLはサポートしてないようなので、Javaで変換が必要。
 
+## H2DBのインメモリで試験すると The dependencies of some of the beans in the application context form a cycle が発生する
+
+解決するには２つの設定が必要だった。原因は不明。
+(1)application.propertiesの設定に spring.h2.console.enabled=true　
+(2)@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT) をテストソースに設定

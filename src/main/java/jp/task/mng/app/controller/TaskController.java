@@ -1,10 +1,12 @@
 package jp.task.mng.app.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import jp.task.mng.app.model.TaskInformation;
 import jp.task.mng.app.model.TaskSearchInformation;
@@ -67,9 +70,17 @@ public class TaskController {
     }
     
     @PostMapping
-    public ResponseEntity<TodoId> createTask(@RequestBody TaskInformation taskInformation) {
+    public ResponseEntity<TaskInformation> createTask(@RequestBody TaskInformation taskInformation,
+                                                UriComponentsBuilder uriBuilder) {
         
-        return this.registService.createTask(taskInformation);
+        
+        TodoId todoId = this.registService.createTask(taskInformation);
+        URI location = todoId.getUri(uriBuilder, "/todo");
+        
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(location);
+        return ResponseEntity.created(location).body(taskInformation);
+        
 
         
     }

@@ -7,6 +7,6 @@ import jp.task.mng.app.model.TodoId;
 
 public interface TaskRegistrationService {
 
-    public ResponseEntity<TodoId> createTask(TaskInformation taskInformation);
+    public TodoId createTask(TaskInformation taskInformation);
 
 }
